@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveForward : MonoBehaviour
 {
+    //publica para dejar que los diferentos game Objects tengan velocidades diferentes. 
     public float speed = 40f;
 
     // Start is called before the first frame update
@@ -15,7 +16,7 @@ public class MoveForward : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //movimiento automatico
+        //movimiento automatico hacia delante
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 }

@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 10f;
-    public float xRange = 16f;
+    //velocidad player
+    private float speed = 10f;
+    //rango de movimiento del player (horizontal)
+    private float xRange = 16f;
+
+    //publica para poder arrastar en el inspector los prefabs al grupo
     public GameObject projectilePrefab;
 
     private float horizontalInput;
@@ -18,15 +22,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Valor del Input
+        //Valor del Input. Movimineto horizontal del player
         horizontalInput = Input.GetAxis("Horizontal");
         //Movimiento manual... Time delta time (tiempo entre frame y frame, da un movimiento fluido)
         transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput);
 
-        //llamamos la funcion
+        //llamamos la funcion: Mantiene el player en la pantalla
         PlayerInBounds();
 
-        //cuando va a disparar?
+        //cuando va a disparar? Mecanica de disparo
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -34,7 +38,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //funcion que no devuelva nada ni recibe nada.
+    //funcion que no devuelva nada ni recibe nada. Se encarga de hacer aparecer el proyectil.
+    //mantiene el player en el limite inferior horizontal
     private void PlayerInBounds()
     {
         //guarda la posicion del player cada vez que llame a la funcion

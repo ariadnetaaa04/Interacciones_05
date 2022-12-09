@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject[] animalPrefabs;
-    public int animalIndex;
+    public GameObject[] animalPrefabs; //Array de los animales
+    private int animalIndex; //indice del array de los animales
+
     private float spawnRangeX = 15;
     private float spawnPosZ = 20;
     public float startDelay = 2f;
@@ -13,8 +14,9 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating( "SpawnRandomAnimal", startDelay,
- spawnInterval);
+        //Llama periodicamente a la funcion SpawnRandomAnimal
+        InvokeRepeating("SpawnRandomAnimal", startDelay, //segundos primera llamada,
+ spawnInterval); //segundos entre llamadas);
     }
 
     // Update is called once per frame
@@ -26,17 +28,20 @@ public class SpawnManager : MonoBehaviour
             SpawnRandomAnimal();
         }
     }
+
+    //funcion que hace aparecer un animal aleatorio en una posicion aleatoria
     private void SpawnRandomAnimal()
     {
         //Instantianehacer aparecer algo en la pantalla
-        animalIndex = Random.Range(0, animalPrefabs.Length);
+        animalIndex = Random.Range(0, animalPrefabs.Length); //genera un indice aleatorio
         Instantiate(animalPrefabs[animalIndex],
         RandomSpawnPos(), animalPrefabs[animalIndex].transform.rotation);
     }
 
+    //funcion que guenera un vector aleatorio
     private Vector3 RandomSpawnPos()
     {
-        float randomX = Random.Range(-spawnRangeX, spawnRangeX);
+        float randomX = Random.Range(-spawnRangeX, spawnRangeX); //Genera numero aleatorio para la posicion en x
         return new Vector3(randomX, 0, spawnPosZ);
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DestroyOutOfBounds : MonoBehaviour
 {
-    public float topBound = 30f;
-    public float lowerBound = -10f; 
+    private float topBound = 30f;
+    private float lowerBound = -10f; 
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +19,10 @@ public class DestroyOutOfBounds : MonoBehaviour
         if (transform.position.z < lowerBound)
         {
             Destroy(gameObject);
+
+            //mecanica de game over
+            Debug.Log("GAME OVER");
+            Time.timeScale = 0;
         }
         //Limite superior --> bala fallida
         else if (transform.position.z > topBound)
